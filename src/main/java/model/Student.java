@@ -2,7 +2,9 @@ package model;
 
 // model will contain all the entities
 
-import jakarta.persistence.*;
+//import jakarta.persistence.*;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "student")
@@ -25,6 +27,11 @@ public class Student {
 
     public Student(int id, String firstName, String lastName, String email) {
         this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+    }    public Student(String firstName, String lastName, String email) {
+        id = 0;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;

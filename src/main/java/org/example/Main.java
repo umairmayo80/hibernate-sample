@@ -1,5 +1,10 @@
 package org.example;
 
+import model.Student;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import util.HibernateUtil;
+
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
@@ -11,9 +16,31 @@ public class Main {
         // Press Shift+F10 or click the green arrow button in the gutter to run the code.
         for (int i = 1; i <= 5; i++) {
 
-            // Press Shift+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
+            // Press Shift+F9 to start dys add more by pressing Ctrl+F8.
+            //            System.out.println("i = " + ebugging your code. We have set one breakpoint
+            // for you, but you can alwai);
         }
+
+        Student student = new Student("Ali","Umer","Ali@umer.com");
+
+        Transaction transaction = null;
+        try {
+            Session session = HibernateUtil.getSessionFactory().openSession();
+
+            transaction = session.beginTransaction();
+
+            // save student object
+            session.save(student);
+
+            transaction.commit();
+
+        } catch (Exception e){
+            e.printStackTrace();
+            if(transaction != null){
+                transaction.rollback();
+            }
+        }
+
+
     }
 }
